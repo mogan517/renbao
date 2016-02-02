@@ -1,0 +1,89 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style type="text/css">
+        #main{width:100%;height:100%;background:#555555}
+        #main button{width:100%;height:20%;font-size:61px}
+        #main #video{width:100%;height:80%;background:#000000;float:left}
+        #main #video video{height:100%;width:100%}
+    </style>
+</head>
+<body>
+    <div id="main">
+        <div id="video">
+            <video id="localVideo" autoplay></video>
+        </div>
+        <button>拍照</button>
+    </div>
+    <script type="text/javascript">
+        // 与信令服务器的WebSocket连接
+        var socket = new WebSocket("ws://192.168.1.101:3000");
+        // stun和turn服务器
+        var iceServer = {
+        };
+
+        var PeerConnection = (window.PeerConnection || window.webkitPeerConnection00 || window.webkitRTCPeerConnection || window.mozRTCPeerConnection);
+        var getUserMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
+        var nativeRTCIceCandidate = (window.mozRTCIceCandidate || window.RTCIceCandidate);
+        var nativeRTCSessionDescription = (window.mozRTCSessionDescription || window.RTCSessionDescription); // order is very important: "RTCSessionDescription" defined in Nighly but useless
+        // 创建PeerConnection实例 (参数为null则没有iceserver，即使没有stunserver和turnserver，仍可在局域网下通讯)
+        var pc = new PeerConnection(iceServer);
+        // 发送ICE候选到其他客户端
+        pc.onicecandidate = function(event){
+            if (event.candidate !== null) {
+                socket.send(JSON.stringify({
+                    "event": "_ice_candidate",
+                    "data": {
+                        "candidate": event.candidate
+                    }
+                }));
+            }
+        };
+
+        // 获取本地音频和视频流
+        getUserMedia.call(navigator,{
+            "audio": true,
+            "video": true
+        }, function(stream){
+              //绑定本地媒体流到video标签用于输出
+              var element = document.getElementById('localVideo')
+              if (navigator.mozGetUserMedia) {
+                  element.mozSrcObject = stream;
+                  element.play();
+              } else {
+                  element.src = webkitURL.createObjectURL(stream);
+              }
+              //向PeerConnection中加入需要发送的流
+              pc.addStream(stream);
+              //如果是发起方则发送一个offer信令
+              pc.createOffer(
+                  function(desc){
+                      pc.setLocalDescription(desc);
+                      socket.send(JSON.stringify({ 
+                          "event": "_offer",
+                          "data": {
+                              "sdp": desc
+                          }
+                      }));
+                  },
+                  function (error) {
+                      console.log('Failure callback: ' + error);
+                  });
+          }, function(error){
+            //处理媒体流创建失败错误
+            console.log('getUserMedia error: ' + error);
+        });
+
+        //处理到来的信令
+        socket.onmessage = function(event){
+            var json = JSON.parse(event.data);
+            console.log('onmessage: ', json);
+            //如果是一个ICE的候选，则将其加入到PeerConnection中，否则设定对方的session描述为传递过来的描述
+            if( json.event === "_ice_candidate" ){
+            } else {
+                pc.setRemoteDescription(new nativeRTCSessionDescription(json.data.sdp));
+            }
+        };
+    </script>
+</body>
+</html>

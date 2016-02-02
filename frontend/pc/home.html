@@ -1,0 +1,235 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>人保总公司系统</title>
+    <link rel="stylesheet" href="">   
+    <script src="pc/js/jquery.min.js" type="text/javascript"></script>
+ <script src="http://fast.wistia.net/labs/fresh-url/v1.js" async></script>
+    <script src="pc/js/bootstrap.js" type="text/javascript"></script>  
+<script type="text/javascript" src="http://api.map.baidu.com/api?v=1.5&ak=D2b4558ebed15e52558c6a766c35ee73"></script>
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <script src="pc/js/angular-ui-router.min.js" type="text/javascript"></script>
+     <link rel="stylesheet" href="pc/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="pc/css/styles.css" />
+    <link rel="stylesheet" href="pc/css/customize-template.css" />
+    <link rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" />
+    <script src="pc/js/angular-resource.min.js" type="text/javascript"></script>
+    <script src="pc/js/handle.js" type="text/javascript"></script>
+    <script src="pc/js/services.js" type="text/javascript"></script>
+    <script src="pc/js/ngStorage.min.js"></script>  
+        <script src="pc/js/app.js" type="text/javascript"></script>
+        <script src="pc/js/SkyRTC-client.js" type="text/javascript"></script>
+  
+    <style type="text/css">
+        #container {
+            width: 84%;
+            height: 340px;
+        }
+        .navbar-static-top {
+            margin-right: 100px;
+        }
+        html {
+            overflow-x: hidden;
+        }
+        .container-fluid{margin-left: 10px}
+    </style>
+</head>
+<body ng-app="zhang"　onload="init();" >
+
+  
+
+
+    <!-- 模态框（Modal） -->
+  
+    <div id="top-nav" class="navbar navbar-inverse navbar-fixed-top" style="padding:0 20px">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" >定损管理系统</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><i class="glyphicon glyphicon-home" ></i> 主页</a>
+                    </li>                  
+                     <li><a href="#"><i class="glyphicon glyphicon-home" ></i> 用户管理</a>
+                    </li>                    
+                    <li><a href="#"><i class="glyphicon glyphicon-home" ></i> 角色管理</a>
+                    </li>                    
+                    <li style="padding-right:200px"><a href="#"><i class="glyphicon glyphicon-home" ></i> 用户菜单</a>
+                    </li>
+                    <li><!-- <a data-toggle="modal" data-target="#myModal"> 设置</a> -->        <button ng-click="gotj()">隐藏/显示</button>
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#" aria-expanded="false"><i class="glyphicon glyphicon-user"></i> Admin <span class="caret"></span></a>
+                        <ul id="g-account-menu" class="dropdown-menu" role="menu">
+                            <li><a href="#" onclick='logout();'><i class="glyphicon glyphicon-lock" ></i> 注销</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <!-- /container -->
+    </div>
+    <br>
+    <div class="wrap" 　style=‘postion:relative“ ng-controller="appController">
+    <div ui-view="viModal"  ></div>
+        <div class="sidebar-wrapper" >
+             
+            <ul id="myTab" class="nav nav-tabs">
+                <li class="active  box-header"><a href="#home"   data-toggle="tab">
+          管理列表</a>
+                </li>
+                <li ng-if="sideBar"><a href="#ios" data-toggle="tab">通讯录</a>
+                </li>
+                <li ng-if="sideBar" class="dropdown">
+                    <a href="#" id="myTabDrop1" class="dropdown-toggle" data-toggle="dropdown">定损 <b class="caret"></b>
+          </a>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
+                        <li><a href="#jmeter" tabindex="-1" data-toggle="tab">拍照</a>
+                        </li>
+                        <li><a href="#ejb" tabindex="-1" data-toggle="tab"> 视频</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+                <div class="tab-pane fade in active" id="home">
+                    <div class="panel-group" id="accordion">
+
+                          <div class="panel " ng-repeat="role in PerList track by $index">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                            <a data-toggle="collapse" data-parent="#accordion"  class="glyphicon glyphicon-folder-close"   href="#collapse_{{role.id}}">{{role.name}}mark </a>
+                               </h4>
+                            </div>
+                            <div id="collapse_{{role.id}}" class="panel-collapse collapse in">
+                                <div class="panel-body">
+                                    <ul class="list-group" ng-if="role.children.length>0">
+                                        <li class="" ng-repeat="item in role.children"><a ui-sref="{{item.path}}" >{{item.name}}mark</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel ">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion"   class="glyphicon glyphicon-cog"  href="#collapseTwo"> 角色管理  </a>
+            </h4>
+                            </div>
+                            <div id="collapseTwo" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ul class="list-group">
+                                        
+                                        <li class=""><a ui-sref="rolelist" ng-click="chat();">角色列表</a>
+                                        </li>  
+                                        <li class=""><a ui-sref="role" ng-click="chat();">添加角色</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel ">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion"   class="glyphicon glyphicon-eye-open"
+                href="#collapseThree">
+               企业群组管理 
+              </a>
+            </h4>
+                            </div>
+                            <div id="collapseThree" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    <ul class="list-group">
+                                        <li class=""><a ui-sref="operation" ng-click="chat();">guanli</a>
+                                        </li>
+                                          <li class=""><a ui-sref="role" ng-click="chat();">role</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- panel-group -->
+                </div>
+                <div class="tab-pane fade" id="ios" style="margin:10px 25px">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-default" ng-click="tab1();">个人</button>
+                        <button type="button" class="btn btn-default" ng-click="tab2();">企业</button>
+                        <button type="button" class="btn btn-default" ng-click="tab3();">临时群组</button>
+                    </div>
+                    <ul class="list-group" 　 ng-show="person">
+                        <p class='text-center padding'> <a data-toggle="modal" data-target="#myModal" class="glyphicon glyphicon-plus">   添加</a>
+                        </p>
+                        <li class="list-group-item"> {{message}}<a ui-sref="chatroom" ng-click="chat();">对话</a> </li>
+                        <li class="list-group-item">王五<a ui-sref="chatroom" ng-click="chat();">对话</a> 
+                        </li>
+                        <li class="list-group-item">张三<a ui-sref="track" ng-click="chat();">轨迹回放</a> </li>
+                    </ul>
+                    <ul class="list-group" 　 ng-show="company">
+                        <p class='text-center padding'> <a data-toggle="modal" data-target="#myModal" class="glyphicon glyphicon-plus"> 添加</a>
+                        </p>
+                        <li class="list-group-item">李四</li>
+                        <li class="list-group-item">孙二</li>
+                        <li class="list-group-item">张三</li>
+                    </ul>
+                    <ul class="list-group" 　 ng-show="temporary">
+                        <br><br>
+                        <li class="list-group-item">李四11</li>
+                        <li class="list-group-item">孙二33</li>
+                        <li class="list-group-item">张三 44</li>
+                    </ul>
+                </div>
+                <div class="tab-pane fade" id="jmeter">
+                    <a href="estimate">拍照</a>
+                </div>
+                <div class="tab-pane fade" id="视频">
+                    <p>视频</p>
+                </div>
+            </div>　
+        </div>
+        <!-- sidebar-wrapper -->
+       
+        <div class="content">
+                    <div class="container-fluid">
+             
+                  <ul>
+
+  </ul>
+　　　
+                    
+                          <div class="ui-view"></div>
+                    　<div ui-view="view1" ></div>
+                    　<div ui-view="view2" style="margin: 0 200px;"></div>
+                            <div id="containers" ><br>
+                                    
+                            </div>
+
+                     <div>　　<!-- container-fluid -->
+                    　
+                    
+       
+       </div><!-- content -->
+    <!-- wrap -->
+ 
+    <script type="text/javascript">
+        function logout() {
+            window.location.href = "/logout";
+        }
+    </script>
+    <script>
+        $(function() {
+            $('#myTab li:eq(1) a').tab('show');
+        });
+    </script>
+</body>
+
+</html>

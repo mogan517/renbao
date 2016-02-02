@@ -1,0 +1,101 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>注册</title>
+    <link rel="stylesheet" href="pc/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="pc/css/bootstrap-combined.min.css" />
+    <link href="pc/css/home.css" rel="stylesheet" type="text/css" />
+
+    <link href="pc/css/styles.css" rel="stylesheet" type="text/css" />
+    <script src="pc/js/jquery-1.10.1.min.js" type="text/javascript"></script>
+    <sscript src="pc/js/angular.min.js" type="text/javascript"></scriptt>
+<script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <script src="pc/js/bootstrap.js" type="text/javascript"></script> 
+    <script src="pc/js/app.js" type="text/javascript"></script>
+    <style>
+        .site-login-pass {width:600px!important;}
+    </style>
+</head>
+<body style="overflow: hidden;" ng-app="zhang">  
+    <nav class="navbar" role="navigation">
+        <div class="navbar-header-lft">
+            <img src="images/logo.png" alt="infenergy" width="89" height="58">
+            <a class="navbar-brand" href="#"></a>
+        </div>
+    </nav>
+<!-- <form  style="margin-top:200px;" method="post" action="/RestAllUser">
+
+  <input type="text" name="id">
+    <input type="text" name="name">
+    <input type="text" name="passwd">
+    
+    <input type="submit" value="Submit"> -->
+</form>
+ -->
+    <div class="form-warp"  ng-controller="HomeController" action="">
+        <div class="site-login-pass">
+                <form class="form-horizontal" ng-submit="submit()" action="/RestAllUser" method="POST">
+                <fieldset>
+                    <div id="legend">
+                        <legend class="">新用户注册{{message}}</legend>
+                       <p>{{list}}</p>
+                    </div>
+                    <div class="control-group">
+                        <!-- Username -->
+                        <label class="control-label" for="username">账号</label>
+                        <div class="controls">
+                            <input type="text" id="username" name="id"  placeholder="" class="input-xlarge">
+                            <p class="help-block">用户名可以是英文数字不能用空格</p>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <!-- E-mail -->
+                        <label class="control-label" for="name">用户名</label>
+                        <div class="controls">
+                            <input type="text" id="name" name="name"    placeholder="" ng-model="mail"  class="input-xlarge">
+                            <p class="help-block">请提供正确的账号</p>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <!-- Password-->
+                        <label class="control-label" for="password" disable ng-model="passwd">密码</label>
+                        <div class="controls">
+                            <input type="password" id="passwd" name="passwd" placeholder="" class="input-xlarge">
+                            <p class="help-block">密码要最少四位的字符</p>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <!-- Password -->
+                        <label class="control-label" for="password_confirm">密码 (重复)</label>
+                        <div class="controls">
+                            <input type="password" id="password_confirm"　disabled="disabled" name="password_confirm" placeholder="" class="input-xlarge">
+                            <p class="help-block">请再次输入您的密码</p>
+                        </div>
+                    </div>
+
+                    <div class="control-group">
+                        <!-- Button -->
+                        <div class="controls">
+                            <button class="btn btn-success blow-btn">注册</button>
+                          
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    <div class="footer">
+        <div>
+            <!-- <a href="">关于我们</a><a href="">法律声明</a><a href="">政策法规</a><a href="">服务公告</a><a href="">友情链接</a> -->
+        </div>
+        <div>
+            <p>Copyright©2014-2015
+            </p>
+        </div>
+    </div>
+</body>
+</html>

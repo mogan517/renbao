@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+  <link rel="stylesheet" href="pc/dist/css/bootstrap-submenu.min.css">
+
+  <script src="https://code.jquery.com/jquery-2.2.0.min.js" defer></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" defer></script>
+  <script src="pc/dist/js/bootstrap-submenu.min.js" defer></script>
+</head>
+<body>
+
+
+<div class="page-header"><h1 style="color:#ccc">角色管理</h1></div>
+
+                 <div class="panel-group" id="accordion1">
+    <div class="panel ">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion1"  class="glyphicon glyphicon-user"   href="#collapseOne1">    定损      </a>
+       <!--                        <i class="glyphicon glyphicon-chevron-down"></i> </h4>　准备加想下箭头　 -->
+        </div>
+        <div id="collapseOne1" class="panel-collapse collapse in">
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li class=""><input type="checkbox"><a ui-sref="chatroom   " ng-click="chat();">对话</a>
+                    </li>
+                    <li class=""><input type="checkbox"><a ui-sref="track" ng-click="chat();">轨迹回放</a>
+                    </li>
+                    <li class=""><a ui-sref="operation" ng-click="chat();">development</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="panel ">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion1"   class="glyphicon glyphicon-cog"  href="#collapseTwo2"> 企业群组  </a>
+            </h4>
+        </div>
+        <div id="collapseTwo2" class="panel-collapse collapse">
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li class=""><a href="estimate">定损</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="panel ">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" data-parent="#accordion1"   class="glyphicon glyphicon-eye-open"
+                href="#collapseThree3">
+               地图 
+              </a>
+            </h4>
+        </div>
+        <div id="collapseThree3" class="panel-collapse collapse">
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li class=""><a ui-sref="operation" ng-click="chat();">guanli</a>
+                    </li>
+                    <li class=""><a ui-sref="role" ng-click="chat();">role</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+                
+                            <form class="form form-vertical">
+                                
+                                <div class="control-group">
+                                    <label>角色:</label>
+                                      <div class="controls">
+                                        <input type="text" class="form-control" placeholder="角色名">
+                                    </div>
+                                </div>
+                               
+                                <div class="control-group">
+                                    <label></label>
+                                    <div class="controls">
+                                        <button type="submit" class="btn btn-primary">
+                                            确认
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        
+</body>
+</html>

@@ -1,0 +1,113 @@
+ <link rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/4.5.0/css/font-awesome.min.css" />	
+ <style>.search-box {
+  display: inline-block;
+  width: 100%;
+  border-radius: 3px;
+  padding: 4px 55px 4px 15px;
+  position: relative;
+  background: #fff;
+  border: 1px solid #ddd;
+  -webkit-transition: all 200ms ease-in-out;
+  -moz-transition: all 200ms ease-in-out;
+  transition: all 200ms ease-in-out;
+}
+.search-box.hovered, .search-box:hover, .search-box:active {
+  border: 1px solid #aaa;
+}
+.search-box input[type=text] {
+  border: none;
+  box-shadow: none;
+  display: inline-block;
+  padding: 0;
+  background: transparent;
+}
+.search-box input[type=text]:hover, .search-box input[type=text]:focus, .search-box input[type=text]:active {
+  box-shadow: none;
+}
+.search-box .search-btn {
+  position: absolute;
+  right: 2px;
+  top: 2px;
+  color: #aaa;
+  border-radius: 3px;
+  font-size: 21px;
+  padding: 5px 10px 1px;
+  -webkit-transition: all 200ms ease-in-out;
+  -moz-transition: all 200ms ease-in-out;
+  transition: all 200ms ease-in-out;
+}
+.search-box .search-btn:hover {
+  color: #fff;
+  background-color: #8FBE00;
+}</style>
+<div class="modal fade" id="confirmDelete" role="dialog" aria-labelledby="confirmDeleteLabel" aria-hidden="true" >
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title">确认删除</h4>
+      </div>
+      <div class="modal-body">
+        <p>是否真的要删除?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-danger" id="confirm">删除</button>
+      </div>
+    </div>
+  </div>
+</div>
+ <div class='row' style="margin:0 100px;">
+    <div class='col-md-4'>
+      <div class='search-box'>
+        <form class='search-form' style="margin:0">
+          <input class='form-control' placeholder='输入角色名进行角色查询' type='text'>
+          <button class='btn btn-link search-btn'>
+            <i class='glyphicon glyphicon-search'></i>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+ 
+<div class="span8"　style="margin:0 100px;">
+<ul>
+ <li ng-repeat="items in roless.children">
+      {{items.name}} <!-- + {{items.id}}+{{items.children[0].name}}+{{items.children[0].id}}+{{items.children[0].createtime}} -->
+    </li></ul>
+                        <div class="box pattern pattern-sandstone">
+                            
+                            <div class="box-content box-table">
+
+                                <table id="sample-table" class="table table-hover table-bordered tablesorter" ng-repeat="items in roless" >
+                                    <thead>
+                                        <tr>
+                                            <th class="header"><span>{{items.name}}</span></th>
+                                                     
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td> <a href="javascript:;" class="btn btn-small btn-info">
+                                         <i class="glyphicon glyphicon-cog" ng-bind="role[0].name"></i>编辑<i ng-bind=""></i>
+                                                </a>
+
+                                                <a href="javascript:;" class="btn btn-small btn-danger" type="button" data-toggle="modal" data-target="#confirmDelete" data-title="Delete User" data-message="Are you sure you want to delete this user ?">
+                                                  {{items.children[0].createtime}}
+                                                </a></td>
+                                            <td> <a href="javascript:;" class="btn btn-small btn-info">
+                                                   <!--  <i class="btn-icon-only icon-check">编辑</i> -->
+                                                    <i class="glyphicon glyphicon-cog" ng-bind="role[0].children.createtime"></i>
+                                                </a>
+
+                                                <a href="javascript:;" class="btn btn-small btn-danger" type="button" data-toggle="modal" data-target="#confirmDelete" data-title="Delete User" data-message="Are you sure you want to delete this user ?">
+                                                  删除
+                                                </a><!-- <a data-toggle="modal" data-target="#myModal">   <i class="glyphicon glyphicon-cog"></i></a> --></td>
+                                           
+                                        </tr>
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>

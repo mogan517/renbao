@@ -1,0 +1,154 @@
+#checkHR {    margin: 0 13px;
+	float: left;
+}
+#checkHR input{
+	
+ display: inline-block;
+    padding: 7px 5px;
+    height: 26px;
+    width: 90px;
+    border: 1px solid #dedede;
+    font-size: 14px;
+    color: #666;
+    transition: .3s;
+    line-height: 26px;
+    background-color: #fefefe;     padding-left: 36px; 
+}
+#checkCode {
+	float: left;
+	width: 90px;
+	height: 15px;
+	padding: 0px 10px;
+	color: red;
+	font-size: 16px;
+	font-family: Arial;
+	font-style: italic;
+	color: Red;
+	border: 0;
+	padding: 8px 10px;
+	letter-spacing: 3px;
+	font-weight: bolder; background:rgb(214,214,214); margin:0 18px;
+}
+.refresh {
+	font-size: 14px;
+	color: red;
+}
+.text {
+	font-size: 11px;
+	color: rgb(154,165,171);
+	margin:0 ; padding-bottom:5px; 
+}
+/*body{background: rgb(81,192,250);}*/
+
+ul, li { list-style:none;}
+
+
+.form-warp{  width:100%; height:840px; position:relative; background:url(../images/slogan.png) 30% 30% no-repeat; }
+
+
+
+.site-login-info{}
+.site-login-info .login-create{}
+.navbar
+ {
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;    box-shadow: 0 0 15px rgba(0,0,0,.9);
+    background-color: rgba(0,0,0, .6);
+}
+.navbar .navbar-header-lft { float:left; margin-left:25px;}
+.navbar .top-rit-nav{ float:right; margin:0 25px;}
+.navbar .top-rit-nav .rit-ul{ float:right}
+.navbar .top-rit-nav .rit-ul li{ float:left;padding-left:25px;}
+.navbar .top-rit-nav .rit-ul a { text-decoration:none; color:white; font-weight:bold;}
+.site-login-pass .site-title{ color:rgb(123,133,135); font-weight:bolder; text-align:center; width:100%; border-bottom:1px dashed rgba(123,133,135,.4);  padding-bottom:10px;}
+.site-login-pass{  border-radius:4px; width:280px; height:500px; overflow:hidden; box-shadow:0 0 15px rgb(6,165,290);  background:rgb(224,239,247); position:absolute;top:100px; right:50px;  padding: 0 20px 0 20px;}
+.site-login-pass .pass-item{ position:relative;    clear: both;
+    z-index: 18;}
+.forgot{ float:right; font-size:9px;padding:15px; text-decoration:none;}
+.site-login-pass .username .label-username{
+	    position: absolute;
+    font-size: 12px;
+    color: #666;
+    padding-bottom: 10px;
+    text-indent: -999em;
+    background: url(../images/userinput.png) no-repeat;
+    height: 10px;
+    width: 17px;
+    top: 11px;
+    z-index: 999;
+    left: 11px;
+    display: block;
+	}
+.site-login-pass .password .label-password{
+	    position: absolute;
+    font-size: 12px;
+    color: #666;
+    padding-bottom: 10px;
+    text-indent: -999em;
+    background: url(../images/pwdinput.png) no-repeat;
+    height: 10px;
+    width: 17px;
+    top: 11px;
+    z-index: 999;
+    left: 11px;
+    display: block;
+	}
+
+.site-login-pass .username .input-username {    position: relative;
+    z-index: 17;
+    display: block;
+    padding: 7px 10px;
+    height: 26px;
+    width: 232px;
+    border: 1px solid #dedede;
+    font-size: 14px;
+    color: #666;
+    transition: .3s;
+    line-height: 26px;
+    background-color: #fefefe;     padding-left: 36px; }
+.site-login-pass .password .input-password {    position: relative;
+    z-index: 17;
+    display: block;
+    padding: 7px 10px;
+    height: 26px;
+    width: 232px;
+    border: 1px solid #dedede;
+    font-size: 14px;
+    color: #666;
+    transition: .3s;
+    line-height: 26px;
+    background-color: #fefefe;    padding-left: 36px;}	
+.username input:focus , .password input:focus{ outline:none; }	
+#checkNum{outline:none; padding-left:10px !important;}
+.btn-success{background:rgb(234,143,2)!important; color:white!important;max-width:269px;}	
+.site-login-pass .pass-item .password{}
+
+.vertify{ margin:0}
+.site-login-pass .pass-item .memberpass{}
+.zhuche{ margin:0 0 20px 0;}
+.zhuche span.sm{ font-size:smaller; color:rgb(146,154,160); text-decoration:none; margin-left:15px; padding:5px;}
+.site-login-pass  .submit { padding:20px 0 14px 0px  ; border-bottom:1px dashed rgba(123,133,135,.4); }
+.site-login-pass  .submit .blow-btn{width:100%; height:25px; color:#39F; background:rgb(51,156,226);    font-size: 20px;
+    font-weight: bold;
+    border: 0;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: Microsoft YaHei,SimHei,Tahoma; border-radius:3px;    height: 41px;}
+ .blow-btn{width:100%; height:25px; color:#39F; background:rgb(234,143,2);    font-size: 20px;
+    font-weight: bold;
+    border: 0;
+    color: #fff;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: Microsoft YaHei,SimHei,Tahoma; border-radius:3px;    height: 41px; margin-top:18px;}
+	
+	.footer { width:1210px; text-align:center; margin:0 auto}
+
+	.footer div a 	{ text-decoration:none; color:white; margin:0 20px;}
+	.footer div a:hover { text-decoration:underline;}	
+	
+	.footer p  	{ text-decoration:none; color:white; margin: 20px;}

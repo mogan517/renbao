@@ -1,0 +1,273 @@
+<html ng-app="estimate" >
+<head>
+    <meta charset="UTF-8">
+        <link rel="stylesheet" href="pc/css/font-awesome.min.css" />
+    <link rel="stylesheet" href="pc/font/FontAwesome.otf" />
+    <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css">
+   <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+   <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script src="pc/js/angular.js" type="text/javascript"></script>
+    <script src="pc/localjs/estimate.js" type="text/javascript"></script>
+    <script src="pc/localjs/const.js" type="text/javascript"></script>
+    <style type="text/css">
+    .nav a{color: white}
+    a:hover, a:focus {
+    color: #2a6496;}
+    .navbar{        margin-bottom: 12px;}
+        #main{width:100%;height:100%;background:#555555}
+        #main #toolbar{width:100%;height:5%;    padding-top: 4px;} 
+        #main #toolbar .subtoolbar{heights:95%;border:0px solid #888888;margin:1px;float:left}
+        #main #toolbar #system{width:15%;}
+        #main #toolbar #ensure_loss{width:25%;}
+        #main #toolbar #video{width:9%;}
+
+        #main #toolbar #sound{width: 100px;
+  height: 17px;
+  position: relative;
+  margin: 20px auto;
+  
+  -webkit-border-radius: 40px;
+  -moz-border-radius: 40px;
+  border-radius: 40px;
+/*  -webkit-box-shadow: inset 0px 0px 1px 1px rgba(0, 0, 0, 0.9), 0px 1px 1px 0px rgba(255, 255, 255, 0.13);
+  -moz-box-shadow: inset 0px 0px 1px 1px rgba(0, 0, 0, 0.9), 0px 1px 1px 0px rgba(255, 255, 255, 0.13);
+
+  box-shadow: inset 0px 0px 1px 1px rgba(0, 0, 0, 0.9), 0px 1px 1px 0px rgba(255, 255, 255, 0.13);*/
+}
+
+        #main #toolbar #sound .bar{width: 388px;
+  height: 5px;
+  background: #333;
+  position: relative;
+  top: -4px;
+  left: 4px;
+  background: #1d2e38;
+  background: -moz-linear-gradient(left, #1d2e38 0%, #2b4254 50%, #2b4254 100%);
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%, #1d2e38), color-stop(50%, #2b4254), color-stop(100%, #2b4254));
+  background: -webkit-linear-gradient(left, #1d2e38 0%, #2b4254 50%, #2b4254 100%);
+  background: -o-linear-gradient(left, #1d2e38 0%, #2b4254 50%, #2b4254 100%);
+  background: -ms-linear-gradient(left, #1d2e38 0%, #2b4254 50%, #2b4254 100%);
+  background: linear-gradient(left, #1d2e38 0%, #2b4254 50%, #2b4254 100%);
+  filter: progid: DXImageTransform.Microsoft.gradient(startColorstr='#1d2e38', endColorstr='#2b4254', GradientType=1);
+  -webkit-border-radius: 40px;
+  -moz-border-radius: 40px;
+  border-radius: 40px;}
+  input[type="range"] {
+  -webkit-appearance: none;
+  background-color: black;
+  height: 2px;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  position: relative;
+  top: 0px;
+  z-index: 1;
+  width: 11px;
+  height: 11px;
+  cursor: pointer;
+  -webkit-box-shadow: 0px 6px 5px 0px rgba(0, 0, 0, 0.6);
+  -moz-box-shadow: 0px 6px 5px 0px rgba(0, 0, 0, 0.6);
+  box-shadow: 0px 6px 5px 0px rgba(0, 0, 0, 0.6);
+  -webkit-border-radius: 40px;
+  -moz-border-radius: 40px;
+  border-radius: 40px;
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #ebf1f6), color-stop(50%, #abd3ee), color-stop(51%, #89c3eb), color-stop(100%, #d5ebfb));
+}
+input[type="range"]:hover ~ #rangevalue,
+input[type="range"]:active ~ #rangevalue {
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)";
+  filter: alpha(opacity=100);
+  opacity: 1;
+  top: -75px;
+}
+        #main #toolbar #sound input{width:90%}
+        #main #toolbar #pic_progress_bar{width:40%}
+        #main #center{width:100%;height:85%;} 
+        #main #center .subcenter{float:left}
+        #main #center #left{height:100%;width:25%;background:#dddddd}
+        #main #center #left #video{height:50%;width:99%;background:#000000;margin:1px;float:left}
+        #main #center #left #video video{height:100%;width:100%}
+        #main #center #left #table_head{}
+        #main #center #left .table_tr{}
+        #main #center #pictures{height:100%;width:75%;}
+        #main #center #pictures img{height:100%;width:100%;}
+        #main #center #pictures .sub_pictures{float:left}
+        #main #center #pictures #main_picture{height:100%;width:85%;}
+        #main #center #pictures #picture_list{overflow:auto;height:100%;width:15%;background:#dddddd}
+        #main #center #pictures #picture_list .sub_picture_list{float:left;width:98%;height:20%;background:#555555;margin:1px}
+
+.nav-pills{padding: 5px 15px 0 0 }
+.nav-pills>li.active>a, .nav-pills>li.active>a:hover, .nav-pills>li.active>a:focus{ color:#fff background: #ccc}
+.nav-pills>li a{ color: #666 }
+    </style>
+
+<head> 
+<body ng-controller="estimate">
+    <div id="main">
+     <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#" style="color:#fff">定损管理系统</a>
+        </div>
+        <div class="nav navbar-collapse collapse">
+               <ul id="system" class=" nav navbar-nav navbar-right" style="float:right">                  
+                   <li><a  href="#"><span class="glyphicon glyphicon-list-alt"></span>本地配置</a></li>
+                   <li><a  href="#"><span class="glyphicon glyphicon-briefcase"></span>密码修改</a></li>
+                    <li> <a  href="#"><span class="glyphicon glyphicon-user"></span>注销</a></li> 
+              </ul>
+        </div>
+
+        
+
+        <div id="toolbar" class="navbar navbar-default navbar-static-top">
+            <div id="ensure_loss" class="subtoolbar btn-group btn-group-justified ">
+                <a class="btn btn-inverse col-md-2"><i class="glyphicon glyphicon-ok"></i><br>完成</a>
+                <a class="btn btn-inverse col-md-2"><i class="glyphicon glyphicon-retweet"></i><br>转接</a>
+                <a class="btn btn-inverse col-md-2"><i class="glyphicon glyphicon-plus-sign"></i><br>补充</a>
+                <a class="btn btn-inverse col-md-2"><i class="glyphicon glyphicon-camera"></i><br>拍照</a>
+                <a class="btn btn-inverse col-md-2"><i class="glyphicon glyphicon-wrench"></i><br>授权拍照</a>
+            </div>
+            <div id="video" class="subtoolbar">
+                    <button type="button" class="btn btn-default btn-lg button-pause pull-right">
+                        <span class="glyphicon glyphicon-pause"></span>
+                    </button>
+                     <button type="button" class="btn btn-default btn-lg button-play pull-right">
+                         <span class="glyphicon glyphicon-play"></span>
+                     </button>
+              <!--   <button >开始</button>
+                <button >停止</button> -->
+            </div>
+            <ul class="nav nav-pills pull-right">
+                  <li ng-class="{'active':mode==1}" title="list" class="active"><a href="#" ng-click="mode=1"><i class="fa fa-list fa-1x"></i></a></li>
+                  <li ng-class="{'active':mode==2}" title="thumbs"><a href="#" ng-click="mode=2"><i class="fa fa-th fa-1x"></i></a></li>
+                  <li ng-class="{'active':mode==3}" title="big thumbs"><a href="#" ng-click="mode=3"><i class="fa fa-th-large fa-1x"></i></a></li>
+             </ul>  <!-- gird here you go  -->
+            <div id="sound" class="subtoolbar "  >
+          <!--       <input id="range" type="range" min="0" max="10" value="10"/>  -->
+                <input class="bar" type="range" id="rangeinput" value="50" onchange="rangevalue.value=value" />
+                <span class="highlight"></span>
+  <output id="rangevalue">50</output>
+            </div>
+            <div id="pic_progress_bar" class="subtoolbar">
+            </div>
+      <!--       <div id="system" class="subtoolbsar bg-info btn-group">
+                <button class="btn btn-info">注销</button>
+                <button class="btn btn-danger">密码修改</button>
+                <button class="btn btn-info">本地配置</button>
+            </div> -->
+        </div>
+        <div id="center">
+            <div id="left" class="subcenter">
+                <div id="video">
+                    <video id="remoteVideo" autoplay></video><br>
+                </div> 
+<!-- start -->     
+                      <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <div class="panel-title">
+                                <i class="glyphicon glyphicon-wrench pull-right"></i>
+                                <h4>定损信息</h4>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <form class="form form-vertical">
+                                <div class="control-group">
+                                    <label>定损信息</label>
+                                    <div class="controls">
+                                        <input type="text" class="form-control" placeholder="定损信息">
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label>报案号:</label>
+                                      <div class="controls">
+                                        <input type="text" class="form-control" placeholder="报案号">
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label>渠道名:</label>
+                                    <div class="controls">
+                                        <select class="form-control">
+                                            <option>个人</option>
+                                            <option>公司</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label></label>
+                                    <div class="controls">
+                                        <button type="submit" class="btn btn-primary">
+                                            确认
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!--/panel content-->
+                    </div>
+<!-- end -->
+                <!-- table start -->
+                    <div class="table table-responsive " style="padding-left:15px">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>      
+                                    <th>排序</th>
+                                    <th>渠道名</th>
+                                    <th>报案号</th>
+                                    <th>设备号</th>                             
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>45</td>
+                                    <td>2.45%</td>
+                                    <td>Direct</td>
+                                </tr>
+                                <tr>
+                                    <td>289</td>
+                                    <td>56.2%</td>
+                                    <td>Referral</td>
+                                </tr>
+                                <tr>
+                                    <td>98</td>
+                                    <td>25%</td>
+                                    <td>Type</td>
+                                </tr>
+                               
+                            </tbody>
+                        </table>
+                    </div>
+　　　　  <!-- table end -->
+               
+            </div>
+            <div id="pictures" class="subcenter">
+                <div id="main_picture" class="sub_pictures">
+                    <img src="/pc/png/no_picture_shows.jpeg" />
+                </div>
+                <div id="picture_list" class="sub_pictures">
+                    <div class="sub_picture_list">
+                        <img src="/pc/png/no_picture_shows.jpeg" />
+                    </div>
+                    <div class="sub_picture_list">
+                        <img src="/pc/png/no_picture_shows.jpeg" />
+                    </div>
+                    <div class="sub_picture_list">
+                        <img src="/pc/png/no_picture_shows.jpeg" />
+                    </div>
+                    <div class="sub_picture_list">
+                        <img src="/pc/png/no_picture_shows.jpeg" />
+                    </div>
+                    <div class="sub_picture_list">
+                        <img src="/pc/png/no_picture_shows.jpeg" />
+                    </div>
+                    <div class="sub_picture_list">
+                        <img src="/pc/png/no_picture_shows.jpeg" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
